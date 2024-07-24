@@ -6,7 +6,7 @@ on:
       - main
 
 jobs:
-  deploy-setup:
+  deploy:
     runs-on: ubuntu-latest
 
     steps:
@@ -17,16 +17,9 @@ jobs:
           node-version: 20
       - name: Install yarn
         run: npm install -g yarn@1.22.22
+
       - name: Install dependencies
         run: yarn install --frozen-lockfile
-
-  deploy:
-    needs: deploy-setup
-
-    runs-on: ubuntu-latest
-
-    steps:
-      - uses: actions/checkout@v4
 
       - name: Build
         run: yarn build
